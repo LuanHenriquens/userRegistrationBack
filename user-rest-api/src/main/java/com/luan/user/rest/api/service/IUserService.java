@@ -15,7 +15,7 @@ public interface IUserService {
     UserDto GetById(Integer userId);
     UserModel Insert(UserInsertDto userInsertDto);
     UserDto Update(UserDto userDto);
-    void Delete(Integer userId);
+    void Delete(UserModel user);
     List<UserPhoneModel> GetPhone(Integer userId);
-    void DeletePhone(String phone, Integer userId);
+    void DeletePhone(UserPhoneModel phone);
 }

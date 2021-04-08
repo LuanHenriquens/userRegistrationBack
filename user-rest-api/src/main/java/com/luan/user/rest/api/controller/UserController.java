@@ -43,9 +43,10 @@ public class UserController {
     public UserDto Update(@RequestBody UserDto userDto) {
         return service.Update(userDto);
     }
-    @DeleteMapping(path = "/{userId}")
-    public void Delete(@PathVariable("userId") Integer userId) {
-        service.Delete(userId);
+
+    @PostMapping(path = "/delete/user")
+    public void Delete(@RequestBody UserModel user) {
+        service.Delete(user);
     }
 
     @GetMapping(path = "/phone")
@@ -53,10 +54,10 @@ public class UserController {
         return service.GetPhone(userId);
     }
 
-    @DeleteMapping(path = "/phone")
-    public void DeletePhone(String phone, Integer userId) {
+    @PostMapping(path = "/delete/phone")
+    public void DeletePhone(@RequestBody UserPhoneModel phone) {
         try {
-            service.DeletePhone(phone, userId);
+            service.DeletePhone(phone);
         } catch (Exception e) {
             e.printStackTrace();
         }

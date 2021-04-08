@@ -91,9 +91,8 @@ public class UserService implements IUserService {
     }
 
 
-    public void Delete(Integer userId){
-        var user = userRepository.findById(userId).get();
-        var phones = GetPhone(userId);
+    public void Delete(UserModel user){
+        var phones = GetPhone(user.id);
         if(phones != null)
             phones.forEach(c ->
                 userPhoneRepository.deleteById(c.id));
@@ -108,15 +107,9 @@ public class UserService implements IUserService {
         return userPhoneRepository.findByUserId(userId);
     }
 
-    public void DeletePhone(String phone, Integer userId)
+    public void DeletePhone(UserPhoneModel phone)
     {
-        var userPhone = userPhoneRepository.findByUserIdAndPhone(userId, phone);
-
-        if (userPhone == null) {
-            throw new NotFoundException("Telefone não encontrado.");
-        }
-
-        userPhoneRepository.delete(userPhone);
+        userPhoneRepository.delete(phone);
     }
 
     private void Validations(UserInsertDto userInsertDto) {
