@@ -3,7 +3,7 @@ package com.luan.user.rest.api.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name="user")
+@Entity(name="users")
 public class UserModel {
 
     @Id
